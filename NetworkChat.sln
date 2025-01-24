@@ -5,9 +5,9 @@ VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserServer", "UserServer\UserServer.csproj", "{7DDE5893-0292-4D2B-852E-9750CE28D5B1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary", "ClassLibrary\ClassLibrary.csproj", "{32CA345B-9009-4D67-83C0-885B1B94EF82}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetworkLibrary", "NetworkLibrary\NetworkLibrary.csproj", "{32CA345B-9009-4D67-83C0-885B1B94EF82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserClient", "UserClient\UserClient.csproj", "{BFF6837C-4CEC-4282-8E01-1B4B5BEA3636}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserClient", "UserClient\UserClient.csproj", "{BFF6837C-4CEC-4282-8E01-1B4B5BEA3636}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
