@@ -11,28 +11,24 @@ using System.Net;
 
 namespace UserClient.Network
 {
-    internal static class NetworkClient
+    internal static class Network
     {
         public static Socket PingServer(IPEndPoint ipEndPoint, out SupportedProtocols protocols)
         {
             try
             {
-                using (Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp))
-                {
-                    socket.Connect(ipEndPoint);
-                    protocols = SupportedProtocols.TCP;
-                    return socket;
-                }
+                Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                socket.Connect(ipEndPoint);
+                protocols = SupportedProtocols.TCP;
+                return socket;
             }
             catch { }
             try
             {
-                using(Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp))
-                {
-                    socket.Connect(ipEndPoint);
-                    protocols = SupportedProtocols.UDP;
-                    return socket;
-                }
+                Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                socket.Connect(ipEndPoint);
+                protocols = SupportedProtocols.UDP;
+                return socket;
             }
             catch { }
             protocols = SupportedProtocols.Unknown;
@@ -40,7 +36,7 @@ namespace UserClient.Network
         }
         public static Socket? InitializationSocket(SupportedProtocols protocol)
         {
-            using Socket? socket = protocol switch
+            Socket? socket = protocol switch
             {
                 SupportedProtocols.TCP => new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp),
                 SupportedProtocols.UDP => new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp),
@@ -52,20 +48,17 @@ namespace UserClient.Network
         }
         public static Socket InitializationSocket(IPEndPoint ipEndPoint, SupportedProtocols protocol)
         {
+            Socket? socket = InitializationSocket(protocol);
+            if(socket is null)
+            {
+                socket = PingServer(ipEndPoint, out _);
+            }
             try
             {
-                Socket? socket = InitializationSocket(protocol);
-                if(socket is null)
-                {
-                    socket = PingServer(ipEndPoint, out _);
-                }
                 socket.Connect(ipEndPoint);
-                return socket;
             }
-            catch (Exception ex)
-            {
-                return null;
-            }
+            catch { }
+            return socket;
         }
 
         public static SupportedProtocols ParseProtocol()

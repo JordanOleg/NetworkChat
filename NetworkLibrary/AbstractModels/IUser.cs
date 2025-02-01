@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NetworkLibrary.UDP
+namespace NetworkLibrary.AbstractModels
 {
-    internal class UDPClientUser
+    public interface IUser
     {
+         
     }
 }
