@@ -11,8 +11,4 @@
     <ProjectReference Include="..\NetworkLibrary\NetworkLibrary.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Extension\" />
-  </ItemGroup>
-
 </Project>
